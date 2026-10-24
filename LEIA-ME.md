@@ -13,7 +13,7 @@ Abra `index.html` no VS Code (gratuito: https://code.visualstudio.com) e use Ctr
 
 - **Textos:** troque só o texto entre as tags, sem apagar os `<` `>`.
 - **Cores:** no bloco `:root` com `--wine`, `--flame`, `--black`, `--frame` (a moldura preta) e `--white`.
-- **Velocidade do carrossel:** procure `const SPEED = 26` (pixels por segundo). Número maior passa mais rápido.
+- **Tempo de cada projeto no carrossel:** procure `const INTERVALO = 3000` (em milissegundos; 3000 = 3 segundos).
 - **Projetos do Behance:** perto do fim do arquivo, em `PROJETOS DO BEHANCE`, adicione `{ nome: '...', tipo: '...', capa: 'img/....jpg', link: 'https://www.behance.net/gallery/...' }`. O card abre direto o projeto no Behance.
 - **Projetos:** procure `PROJETOS:` perto do fim do arquivo. Cada projeto é um bloco `{ ... }` com nome, tipo, capa, texto e galeria. Para adicionar um, copie o bloco do artie, cole no lugar de um `{ emBreve: true, ... }` e troque os dados. Coloque as imagens na pasta `img/`.
 - **Trajetória:** procure `LINHA DO TEMPO`. Cada marco é um `<li class="stop">`. Coloque `trab` na classe para marcos de trabalho (bolinha preenchida).
