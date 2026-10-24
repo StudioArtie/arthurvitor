@@ -179,15 +179,16 @@ img{display:block;max-width:100%}
 .stop.now b{color:var(--flame)}
 .todo{color:var(--mute);font-style:italic}
 
-/* 6. contato */
-.contact{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;align-items:end}
-.contact .d-l{grid-column:1/8;max-width:14ch}
-.c-info{grid-column:8/13;display:grid;gap:20px;align-content:end}
-.c-info p{margin:0;color:var(--white)}
-.c-list{list-style:none;margin:0;padding:0;border-top:1.5px solid var(--line)}
-.c-list li{display:grid;grid-template-columns:6.5em 1fr;gap:12px;padding-block:14px;border-bottom:1.5px solid var(--line);align-items:baseline}
-.c-list li>span:first-child{font-size:.76rem;letter-spacing:.05em;color:var(--mute)}
-.c-list a,.c-list li>span+span{font-family:var(--winco);font-weight:700;font-size:clamp(1.05rem,.9rem + .5vw,1.35rem);overflow-wrap:anywhere;text-decoration:none}
+/* 6. contato: fundo laranja da paleta, texto vinho e preto */
+.contact{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(24px,4vw,64px);align-items:start;color:var(--wine)}
+.c-head{grid-column:1/7;display:grid;gap:clamp(16px,2vw,24px);align-content:start}
+.c-head .d{color:var(--wine);max-width:12ch}
+.c-head p{margin:0;color:var(--black);font-size:1.1rem;line-height:1.45;max-width:30ch}
+.c-info{grid-column:7/13}
+.c-list{list-style:none;margin:0;padding:0;border-top:1.5px solid rgba(59,21,24,.35)}
+.c-list li{display:grid;grid-template-columns:6.5em 1fr;gap:12px;padding-block:16px;border-bottom:1.5px solid rgba(59,21,24,.35);align-items:baseline}
+.c-list li>span:first-child{font-size:.8rem;letter-spacing:.04em;color:var(--black);opacity:.75}
+.c-list a,.c-list li>span+span{font-family:var(--winco);font-weight:700;font-size:clamp(1.1rem,.9rem + .6vw,1.45rem);color:var(--wine);overflow-wrap:anywhere;text-decoration:none}
 .c-list a:hover{text-decoration:underline;text-underline-offset:4px}
 .foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:6px 8px 4px;color:var(--flame);font-size:.8rem;letter-spacing:.03em}
 .foot .logo{width:96px}
@@ -213,7 +214,7 @@ dialog::backdrop{background:rgba(13,13,13,.85)}
 @media (max-width:900px){
   .about-txt,.orbit{grid-column:1/13}
   .orbit{width:min(70%,300px)}
-  .contact .d-l,.c-info{grid-column:1/13}
+  .c-head,.c-info{grid-column:1/13}
   .path-intro{grid-column:1/13}
   .htl-hint{display:block}
   .photo{grid-column:1/13;order:-1;width:min(100%,420px);justify-self:center;aspect-ratio:4/5;min-height:0}
@@ -223,6 +224,7 @@ dialog::backdrop{background:rgba(13,13,13,.85)}
 @media (max-width:640px){
   .nav .pill:not(.on){display:none}
   .track{--cw:84vw}
+  .c-list li{grid-template-columns:1fr;gap:4px}
   .cols{grid-template-columns:1fr}
   .ways{grid-template-columns:1fr}
   .gal{grid-template-columns:1fr}
@@ -342,10 +344,12 @@ dialog::backdrop{background:rgba(13,13,13,.85)}
   </section>
 
   <!-- 6. CONTATO -->
-  <section class="panel p-black contact" id="contato" aria-label="Contato">
-    <h2 class="d d-l"><span class="mask"><span>Vamos criar</span></span><span class="mask"><span>algo juntos</span></span></h2>
-    <div class="c-info">
+  <section class="panel p-flame contact" id="contato" aria-label="Contato">
+    <div class="c-head">
+      <h2 class="d d-l"><span class="mask"><span>Vamos criar</span></span><span class="mask"><span>algo juntos</span></span></h2>
       <p>Tem uma ideia ou uma marca para tirar do papel? Fale comigo por aqui.</p>
+    </div>
+    <div class="c-info">
       <!-- CONTATOS: troque "a definir" pelos seus dados -->
       <ul class="c-list">
         <li><span>E-mail</span><a href="mailto:arthurjcvitorsilva@gmail.com">arthurjcvitorsilva@gmail.com</a></li>
@@ -531,7 +535,7 @@ const PROJETOS = [
   const htl = gsap.timeline({scrollTrigger: {trigger: '#htl', start: 'top 85%', once: true}});
   htl.fromTo('#htl .line i', {scaleX: 0}, {scaleX: 1, duration: 1.6, ease: 'power2.inOut'})
      .from('#htl .stop', {y: 24, opacity: 0, duration: .8, stagger: .14, ease: 'expo.out'}, .1);
-  ScrollTrigger.batch('.cols p, .path-intro > *:not(h2), .path .photo, .way, .c-info', {start: 'top 92%', once: true, onEnter: els => gsap.from(els, {y: 36, opacity: 0, duration: .9, stagger: .07, ease: 'expo.out'})});
+  ScrollTrigger.batch('.cols p, .path-intro > *:not(h2), .path .photo, .way, .c-head p, .c-info', {start: 'top 92%', once: true, onEnter: els => gsap.from(els, {y: 36, opacity: 0, duration: .9, stagger: .07, ease: 'expo.out'})});
 })();
 </script>
 
