@@ -153,20 +153,20 @@ img{display:block;max-width:100%}
 .way p{margin:0;font-size:.95rem;color:var(--white)}
 
 /* 5. trajetória (linha do tempo horizontal) */
-.path{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,3vw,48px);align-items:stretch}
-.path-intro{grid-column:1/8;display:grid;gap:clamp(18px,2.4vw,28px);align-content:start}
+.path{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(24px,4vw,64px);align-items:start}
+.path-intro{grid-column:1;display:grid;gap:clamp(18px,2.4vw,28px);align-content:start}
 .path-intro p{margin:0;color:var(--white);font-size:1.05rem;max-width:46ch}
 .courses{display:grid;gap:10px}
 .courses ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
 .courses li{border:1.5px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.82rem;color:var(--white)}
 .courses li span{color:var(--flame)}
 .lab-s{display:block;font-size:.76rem;letter-spacing:.06em;color:var(--mute)}
-/* no computador, a foto acompanha a altura do texto ao lado */
-.photo{grid-column:8/13;position:relative;min-height:380px;max-width:100%;border-radius:16px;overflow:hidden;background:#cfcfcf}
-.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%}
-.htl-wrap{grid-column:1/13;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad);margin-top:clamp(28px,4vw,64px)}
+/* foto sempre vertical (4:5, o formato dela), com altura próxima à do texto ao lado */
+.photo{grid-column:2;position:relative;width:clamp(300px,25vw,400px);aspect-ratio:4/5;max-width:100%;border-radius:16px;overflow:hidden;background:#cfcfcf}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.htl-wrap{grid-column:1/-1;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad);margin-top:clamp(28px,4vw,64px)}
 .htl-wrap::-webkit-scrollbar{display:none}
-.htl-hint{display:none;grid-column:1/13;margin:0 0 -8px;color:var(--mute)}
+.htl-hint{display:none;grid-column:1/-1;margin:0 0 -8px;color:var(--mute)}
 .htl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(170px,1fr));position:relative;min-width:960px}
 .htl .line{position:absolute;left:0;right:0;top:55px;height:2px;background:var(--line)}
 .htl .line i{position:absolute;inset:0;background:var(--flame);transform-origin:left}
@@ -219,9 +219,10 @@ dialog::backdrop{background:rgba(13,13,13,.85)}
   .about-txt,.orbit{grid-column:1/13}
   .orbit{width:min(70%,300px)}
   .c-head,.c-info{grid-column:1/13}
-  .path-intro{grid-column:1/13}
+  .path{grid-template-columns:minmax(0,1fr)}
+  .path-intro{grid-column:1/-1}
   .htl-hint{display:block}
-  .photo{grid-column:1/13;order:-1;width:min(100%,420px);justify-self:center;aspect-ratio:4/5;min-height:0}
+  .photo{grid-column:1/-1;order:-1;width:min(100%,420px);justify-self:center}
   .hero-photo{width:100%;-webkit-mask-image:linear-gradient(0deg,transparent 0%,#000 60%);mask-image:linear-gradient(0deg,transparent 0%,#000 60%);opacity:.7}
   .dlg-head .d,.dlg-head p,.dlg-head dl{grid-column:1/13}
 }
