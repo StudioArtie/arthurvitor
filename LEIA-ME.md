@@ -26,3 +26,9 @@ Arraste a pasta inteira em https://app.netlify.com/drop.
 ## Atenção
 - A licença da Winco que veio no arquivo é "Demo for Personal Use". Para um site comercial, compre a licença comercial.
 - As animações usam a GSAP, carregada da internet. Sem conexão, o site funciona, mas sem animações.
+
+## Projetos do Behance (automático)
+Todo dia, a rotina `.github/workflows/behance.yml` lê os projetos do seu Behance (ArtieStudio), baixa as capas para `img/behance/` e atualiza o `behance.json`. O carrossel mostra esses projetos depois dos que estão escritos no `index.html`, sem repetir.
+
+- **Rodar na hora:** no GitHub, aba **Actions → Atualizar projetos do Behance → Run workflow**.
+- **Trocar a capa de um projeto automático:** adicione o projeto na lista `PROJETOS` do `index.html`, com a capa que quiser. O automático deixa de aparecer, porque o site não repete o mesmo projeto.

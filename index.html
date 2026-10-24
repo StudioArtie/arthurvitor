@@ -396,7 +396,22 @@ const PROJETOS = [
   { todos: 'https://www.behance.net/ArtieStudio' }
 ];
 
-(() => {
+(async () => {
+  /* projetos do Behance: a rotina do GitHub atualiza o behance.json todo dia.
+     Os que já estão na lista acima (pelo número do projeto no link) não se repetem. */
+  try {
+    const ctrl = new AbortController(); setTimeout(() => ctrl.abort(), 3000);
+    const auto = await (await fetch('behance.json', {cache: 'no-store', signal: ctrl.signal})).json();
+    const idDe = l => ((l || '').match(/gallery\/(\d+)/) || [])[1];
+    const tem = new Set(PROJETOS.map(p => idDe(p.link)).filter(Boolean));
+    const novos = (Array.isArray(auto) ? auto : []).filter(p => p && p.link && p.capa && !tem.has(idDe(p.link)));
+    if (novos.length) {
+      const fim = PROJETOS.findIndex(p => p.emBreve || p.todos);
+      PROJETOS.splice(fim < 0 ? PROJETOS.length : fim, 0, ...novos);
+      for (let i = PROJETOS.length - 1; i >= 0; i--) if (PROJETOS[i].emBreve) PROJETOS.splice(i, 1);
+    }
+  } catch (e) { /* sem a lista automática, o site usa só os projetos daqui */ }
+
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const G = typeof gsap !== 'undefined' && !reduce;
   const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
