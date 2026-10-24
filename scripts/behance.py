@@ -2,6 +2,7 @@
 
 Roda pela rotina do GitHub (.github/workflows/behance.yml). Usa só a biblioteca padrão do Python.
 """
+import html
 import json
 import os
 import re
@@ -55,7 +56,7 @@ def main():
     os.makedirs(PASTA_CAPAS, exist_ok=True)
     projetos = []
     for item in itens:
-        nome = (item.findtext("title") or "").strip()
+        nome = html.unescape((item.findtext("title") or "").strip())
         link = (item.findtext("link") or "").strip()
         descricao = item.findtext("description") or ""
         num = re.search(r"gallery/(\d+)", link)
@@ -81,6 +82,7 @@ def main():
             "tipo": "Ver no Behance",
             "capa": f"img/behance/{num.group(1)}.jpg",
             "capaAlt": f"Capa do projeto {nome}",
+            "encaixe": "inteira",
             "link": link,
         })
 
