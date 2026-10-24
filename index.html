@@ -279,7 +279,7 @@ dialog::backdrop{background:rgba(13,13,13,.85)}
       </div>
     </div>
     <div class="track" id="track"></div>
-    <p class="hint small">Os projetos passam sozinhos. Arraste para ver mais rápido e clique para abrir no Behance.</p>
+    <p class="hint small">Os projetos trocam sozinhos a cada 3 segundos. Use as setas ou arraste para navegar e clique para abrir no Behance.</p>
   </section>
 
   <!-- 4. SOBRE MIM -->
@@ -372,8 +372,6 @@ dialog::backdrop{background:rgba(13,13,13,.85)}
   <div class="dlg" id="dlg-body"></div>
 </dialog>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 /* =========================================================
    PROJETOS DO BEHANCE: para um projeto que abre direto no Behance,
@@ -438,7 +436,7 @@ const PROJETOS = [
   const cards = [...track.children];
   cards.forEach((c, k) => { if (k < N || k >= 2 * N) { c.setAttribute('aria-hidden', 'true'); c.tabIndex = -1; } });
   const count = document.getElementById('count'), prev = document.getElementById('prev'), next = document.getElementById('next');
-  const SPEED = 26; // pixels por segundo
+  const INTERVALO = 3000; // tempo em cada projeto, em milissegundos
   let step = 1, setW = 1, pos = 0, tween = null, pauseUntil = 0, hovering = false, down = false, touching = false, moved = false, onScreen = true;
   const measure = () => { step = (cards[1].offsetLeft - cards[0].offsetLeft) || 1; setW = step * N; };
   const update = () => {
@@ -458,7 +456,8 @@ const PROJETOS = [
     if (shift) { pos += shift; if (tween) { tween.from += shift; tween.to += shift; } }
     track.scrollLeft = pos; update();
   };
-  const slideTo = target => { tween = {from: pos, to: target, t0: performance.now(), d: reduce ? 1 : 700}; pauseUntil = performance.now() + 4000; };
+  let ultimaTroca = performance.now();
+  const slideTo = target => { tween = {from: pos, to: target, t0: performance.now(), d: reduce ? 1 : 700}; pauseUntil = performance.now() + 4000; ultimaTroca = performance.now(); };
   const go = dir => slideTo((Math.round(pos / step) + dir) * step);
   prev.addEventListener('click', () => go(-1)); next.addEventListener('click', () => go(1));
   track.addEventListener('keydown', e => { if (e.key === 'ArrowRight') go(1); if (e.key === 'ArrowLeft') go(-1); });
@@ -478,7 +477,7 @@ const PROJETOS = [
   const tick = now => {
     const dt = Math.min(.05, (now - last) / 1000); last = now;
     if (tween) { const t = Math.min(1, (now - tween.t0) / tween.d), e = 1 - Math.pow(1 - t, 3); pos = tween.from + (tween.to - tween.from) * e; if (t >= 1) tween = null; apply(); }
-    else if (!reduce && onScreen && !hovering && !down && !touching && now > pauseUntil) { pos += SPEED * dt; apply(); }
+    else if (!reduce && onScreen && !hovering && !down && !touching && now > pauseUntil && now - ultimaTroca > INTERVALO) { go(1); pauseUntil = 0; ultimaTroca = now; }
     requestAnimationFrame(tick);
   };
   measure(); pos = setW; apply(); requestAnimationFrame(tick);
@@ -527,15 +526,6 @@ const PROJETOS = [
   const loop = now => { if (visible) place(now); requestAnimationFrame(loop); };
   requestAnimationFrame(loop);
 
-  if (!G) return;
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.from('.hero-top > *, .hero-bot > *', {y: 20, opacity: 0, duration: 1, stagger: .08, ease: 'expo.out'});
-  gsap.from('.svc li', {yPercent: 60, opacity: 0, duration: 1, stagger: .06, ease: 'expo.out', delay: .2, clearProps: 'opacity,transform'});
-  document.querySelectorAll('.panel:not(.hero) .mask > span').forEach(el => gsap.from(el, {yPercent: 105, duration: 1.1, ease: 'expo.out', scrollTrigger: {trigger: el, start: 'top 90%', once: true}}));
-  const htl = gsap.timeline({scrollTrigger: {trigger: '#htl', start: 'top 85%', once: true}});
-  htl.fromTo('#htl .line i', {scaleX: 0}, {scaleX: 1, duration: 1.6, ease: 'power2.inOut'})
-     .from('#htl .stop', {y: 24, opacity: 0, duration: .8, stagger: .14, ease: 'expo.out'}, .1);
-  ScrollTrigger.batch('.cols p, .path-intro > *:not(h2), .path .photo, .way, .c-head p, .c-info', {start: 'top 92%', once: true, onEnter: els => gsap.from(els, {y: 36, opacity: 0, duration: .9, stagger: .07, ease: 'expo.out'})});
 })();
 </script>
 
