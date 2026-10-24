@@ -59,7 +59,7 @@ def main():
         link = (item.findtext("link") or "").strip()
         descricao = item.findtext("description") or ""
         num = re.search(r"gallery/(\d+)", link)
-        img = re.search(r'<img[^>]+src="([^"]+)"', descricao)
+        img = re.search(r"""<img[^>]+src=["']([^"']+)["']""", descricao)
         if not (nome and num and img):
             continue
         destino = os.path.join(PASTA_CAPAS, f"{num.group(1)}.jpg")
