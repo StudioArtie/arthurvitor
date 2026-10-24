@@ -4,6 +4,7 @@
     "tipo": "Ver no Behance",
     "capa": "img/behance/253327461.jpg",
     "capaAlt": "Capa do projeto Portraits of Friends | Illustration Collection",
+    "encaixe": "inteira",
     "link": "https://www.behance.net/gallery/253327461/Portraits-of-Friends-Illustration-Collection"
   },
   {
@@ -11,13 +12,15 @@
     "tipo": "Ver no Behance",
     "capa": "img/behance/252854421.jpg",
     "capaAlt": "Capa do projeto Studio artie - Brand Design",
+    "encaixe": "inteira",
     "link": "https://www.behance.net/gallery/252854421/Studio-artie-Brand-Design"
   },
   {
-    "nome": "R&amp;W - Estúdio de Pilates e Fisioterapia",
+    "nome": "R&W - Estúdio de Pilates e Fisioterapia",
     "tipo": "Ver no Behance",
     "capa": "img/behance/251096959.jpg",
-    "capaAlt": "Capa do projeto R&amp;W - Estúdio de Pilates e Fisioterapia",
+    "capaAlt": "Capa do projeto R&W - Estúdio de Pilates e Fisioterapia",
+    "encaixe": "inteira",
     "link": "https://www.behance.net/gallery/251096959/R-W-Estudio-de-Pilates-e-Fisioterapia"
   },
   {
@@ -25,6 +28,7 @@
     "tipo": "Ver no Behance",
     "capa": "img/behance/249812349.jpg",
     "capaAlt": "Capa do projeto Sebrae Amplifica - KEY VISUAL",
+    "encaixe": "inteira",
     "link": "https://www.behance.net/gallery/249812349/Sebrae-Amplifica-KEY-VISUAL"
   },
   {
@@ -32,6 +36,7 @@
     "tipo": "Ver no Behance",
     "capa": "img/behance/228198165.jpg",
     "capaAlt": "Capa do projeto Poster Collection vol.01",
+    "encaixe": "inteira",
     "link": "https://www.behance.net/gallery/228198165/Poster-Collection-vol01"
   },
   {
@@ -39,6 +44,7 @@
     "tipo": "Ver no Behance",
     "capa": "img/behance/211842975.jpg",
     "capaAlt": "Capa do projeto Sabrina Carpenter - Poster design concept",
+    "encaixe": "inteira",
     "link": "https://www.behance.net/gallery/211842975/Sabrina-Carpenter-Poster-design-concept"
   }
 ]
