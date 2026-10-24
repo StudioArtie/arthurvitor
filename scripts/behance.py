@@ -41,7 +41,17 @@ def main():
         print(f"::warning::Não consegui ler o feed do Behance ({e}). Nada foi alterado.")
         return 0
 
-    itens = ET.fromstring(xml).findall("./channel/item")
+    amostra = xml[:300].decode("utf-8", "replace").replace("\n", " ")
+    try:
+        raiz = ET.fromstring(xml)
+    except ET.ParseError:
+        print(f"::warning::O Behance não devolveu um feed válido. Início da resposta: {amostra}")
+        return 0
+    itens = raiz.findall("./channel/item")
+    print(f"::notice::Feed lido: {len(xml)} bytes, {len(itens)} item(ns). Início: {amostra}")
+    if itens:
+        d = (itens[0].findtext("description") or "")[:300].replace("\n", " ")
+        print(f"::notice::Primeiro item: {itens[0].findtext('title')} | {itens[0].findtext('link')} | {d}")
     os.makedirs(PASTA_CAPAS, exist_ok=True)
     projetos = []
     for item in itens:
