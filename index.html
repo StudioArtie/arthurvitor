@@ -126,6 +126,8 @@ img{display:block;max-width:100%}
 .proj.all:hover .cover{background:var(--flame)}
 .proj.all:hover .ico,.proj.all:hover .d{color:var(--wine)}
 .proj{text-decoration:none}
+.proj .cover .blur{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(22px) brightness(.55);transform:scale(1.25)}
+.proj:hover .cover .blur{transform:scale(1.25)}
 .proj .ph{position:absolute;inset:0;display:grid;place-items:center;background:var(--wine)}
 .proj .ph .d{font-size:clamp(3rem,2rem + 4vw,6rem);color:var(--flame)}
 .hint{margin-top:18px;color:var(--mute)}
@@ -421,7 +423,7 @@ const PROJETOS = [
   const cardHTML = (p, i) => p.todos
     ? `<a class="proj all" href="${esc(p.todos)}" target="_blank" rel="noopener"><div class="cover"><div><i class="ico" style="--m:var(--img-raposa)" aria-hidden="true"></i><span class="d">Ver todos no Behance ↗</span></div></div><span class="name">Behance</span><span class="tag ul">behance.net/ArtieStudio</span></a>`
     : p.link
-    ? `<a class="proj" href="${esc(p.link)}" target="_blank" rel="noopener"><div class="cover"${p.fundo ? ` style="background:${esc(p.fundo)}"` : ''}>${p.capa ? `<img src="${esc(p.capa)}" alt="${esc(p.capaAlt || p.nome)}" draggable="false"${p.encaixe === 'inteira' ? ' style="object-fit:contain"' : ''}>` : `<div class="ph"><span class="d">${esc(p.sigla || p.nome)}</span></div>`}<span class="pill see">Ver no Behance ↗</span></div><span class="name">${esc(p.nome)}</span><span class="tag ul">${esc(p.tipo)}</span></a>`
+    ? `<a class="proj" href="${esc(p.link)}" target="_blank" rel="noopener"><div class="cover"${p.fundo ? ` style="background:${esc(p.fundo)}"` : ''}>${p.capa && p.encaixe === 'inteira' && !p.fundo ? `<img class="blur" src="${esc(p.capa)}" alt="" aria-hidden="true" draggable="false">` : ''}${p.capa ? `<img src="${esc(p.capa)}" alt="${esc(p.capaAlt || p.nome)}" draggable="false"${p.encaixe === 'inteira' ? ' style="object-fit:contain;position:relative"' : ''}>` : `<div class="ph"><span class="d">${esc(p.sigla || p.nome)}</span></div>`}<span class="pill see">Ver no Behance ↗</span></div><span class="name">${esc(p.nome)}</span><span class="tag ul">${esc(p.tipo)}</span></a>`
     : p.emBreve
     ? `<div class="proj soon" role="button" tabindex="0"><div class="cover"><div><i class="ico" style="--m:${p.icone}" aria-hidden="true"></i><span class="small">Projeto ${pad(i + 1)}<br>em breve</span></div></div><span class="name">Em breve</span><span class="tag">Novo projeto</span></div>`
     : `<button class="proj" type="button" data-i="${i}" aria-haspopup="dialog"><div class="cover"><img src="${esc(p.capa)}" alt="${esc(p.capaAlt || p.nome)}" draggable="false"><span class="pill see">Ver projeto</span></div><span class="name">${esc(p.nome)}</span><span class="tag ul">${esc(p.tipo)}</span></button>`;
