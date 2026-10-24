@@ -149,7 +149,7 @@ img{display:block;max-width:100%}
 .way p{margin:0;font-size:.95rem;color:var(--white)}
 
 /* 5. trajetória (linha do tempo horizontal) */
-.path{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,3vw,48px);align-items:start}
+.path{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,3vw,48px);align-items:stretch}
 .path-intro{grid-column:1/8;display:grid;gap:clamp(18px,2.4vw,28px);align-content:start}
 .path-intro p{margin:0;color:var(--white);font-size:1.05rem;max-width:46ch}
 .courses{display:grid;gap:10px}
@@ -157,8 +157,9 @@ img{display:block;max-width:100%}
 .courses li{border:1.5px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.82rem;color:var(--white)}
 .courses li span{color:var(--flame)}
 .lab-s{display:block;font-size:.76rem;letter-spacing:.06em;color:var(--mute)}
-.photo{grid-column:8/13;aspect-ratio:4/5;max-width:100%;border-radius:16px;overflow:hidden;background:#cfcfcf}
-.photo img{width:100%;height:100%;object-fit:cover}
+/* no computador, a foto acompanha a altura do texto ao lado */
+.photo{grid-column:8/13;position:relative;min-height:380px;max-width:100%;border-radius:16px;overflow:hidden;background:#cfcfcf}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%}
 .htl-wrap{grid-column:1/13;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad);margin-top:clamp(28px,4vw,64px)}
 .htl-wrap::-webkit-scrollbar{display:none}
 .htl-hint{display:none;grid-column:1/13;margin:0 0 -8px;color:var(--mute)}
@@ -215,7 +216,7 @@ dialog::backdrop{background:rgba(13,13,13,.85)}
   .contact .d-l,.c-info{grid-column:1/13}
   .path-intro{grid-column:1/13}
   .htl-hint{display:block}
-  .photo{grid-column:1/13;order:-1;width:min(100%,420px);justify-self:center}
+  .photo{grid-column:1/13;order:-1;width:min(100%,420px);justify-self:center;aspect-ratio:4/5;min-height:0}
   .hero-photo{width:100%;-webkit-mask-image:linear-gradient(0deg,transparent 0%,#000 60%);mask-image:linear-gradient(0deg,transparent 0%,#000 60%);opacity:.7}
   .dlg-head .d,.dlg-head p,.dlg-head dl{grid-column:1/13}
 }
