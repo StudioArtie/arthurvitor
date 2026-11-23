@@ -3,7 +3,7 @@
 ## O que tem aqui
 - `index.html`: o site inteiro (textos, estrutura, cores e animações)
 - `img/`: fotos, logotipo, raposa e ícones
-- `fonts/`: Winco e Helvetica Neue
+- `fonts/`: Encode Sans Semi Condensed (títulos, licença livre OFL) e Helvetica Neue
 
 ## Como ver
 Dê dois cliques em `index.html`. Depois de editar, salve e aperte F5 no navegador.
@@ -24,7 +24,7 @@ Abra `index.html` no VS Code (gratuito: https://code.visualstudio.com) e use Ctr
 Arraste a pasta inteira em https://app.netlify.com/drop.
 
 ## Atenção
-- A licença da Winco que veio no arquivo é "Demo for Personal Use". Para um site comercial, compre a licença comercial.
+- A fonte dos títulos é a Encode Sans Semi Condensed, de licença livre (SIL Open Font License). A licença está em `fonts/OFL-encode-sans.txt`.
 - As animações usam a GSAP, carregada da internet. Sem conexão, o site funciona, mas sem animações.
 
 ## Projetos do Behance (automático)
